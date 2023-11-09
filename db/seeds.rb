@@ -6,8 +6,21 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+Flight.delete_all
 Airport.delete_all
+
 airport_codes = ['NYC', 'DFW', 'MEM', 'JFK', 'BOS', 'LAX', 'AUS']
+airports = []
 airport_codes.each do |code|
-  Airport.create(text_code: code)
+  airports << Airport.create(text_code: code)
+end
+
+12.times do |i|
+  two_airports = airports.sample(2)
+  Flight.create(
+    takeoff: rand(5.months).seconds.from_now,
+    duration_seconds: rand(2500..15000),
+    departing_airport: two_airports[0],
+    arriving_airport: two_airports[1]
+  )
 end
