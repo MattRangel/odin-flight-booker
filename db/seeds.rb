@@ -19,7 +19,7 @@ end
   two_airports = airports.sample(2)
   Flight.create(
     takeoff: rand(5.months).seconds.from_now,
-    duration_seconds: rand(2500..15000),
+    duration_minutes: rand(45..300),
     departing_airport: two_airports[0],
     arriving_airport: two_airports[1]
   )
