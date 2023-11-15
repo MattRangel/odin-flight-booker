@@ -1,0 +1,4 @@
+<p>From: <%= flight.departing_airport.text_code %> To: <%= flight.arriving_airport.text_code %></p>
+<p>Departure: <%= flight.takeoff.to_fs(:long) %></p>
+<p>Flight Duration: <%= flight.duration_minutes %> min</p>
+<br>
