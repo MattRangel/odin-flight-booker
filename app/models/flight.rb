@@ -9,4 +9,9 @@ class Flight < ApplicationRecord
   def self.takeoff_strings
     self.order(:takeoff).map(&:takeoff_string).uniq
   end
+
+  def self.search(params)
+    return [] if params.empty?
+    self.where("departing_airport_id = :departing_airport_id AND arriving_airport_id = :arriving_airport_id AND DATE(takeoff) = :takeoff", params.to_h)
+  end
 end
