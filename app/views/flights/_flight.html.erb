@@ -1,4 +1,6 @@
-<p>From: <%= flight.departing_airport.text_code %> To: <%= flight.arriving_airport.text_code %></p>
-<p>Departure: <%= flight.takeoff.to_fs(:long) %></p>
-<p>Flight Duration: <%= flight.duration_minutes %> min</p>
-<br>
+<input type="radio" name="flight_id" value="<%= flight.id %>" id="flight_id_<%= flight.id %>">
+<label for="flight_id_<%= flight.id %>">
+  <p>From: <i><%= flight.departing_airport.text_code %></i> | To: <i><%= flight.arriving_airport.text_code %></i></p>
+  <p>Departure: <i><%= flight.takeoff.to_fs(:long) %></i></p>
+  <p>Flight Duration: <i><%= flight.duration_minutes %> min</i></p>
+</label>
