@@ -1,0 +1,4 @@
+#flight_radio_list {
+  display: grid;
+  grid-template-columns: 1.4rem auto;
+}
