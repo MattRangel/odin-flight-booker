@@ -10,10 +10,10 @@
   <%= f.select(:takeoff, Flight.takeoff_strings) %>
   <%= f.submit "Search" %>
 <% end %>
-<%= form_with url: "/booking", method: :get do |f| %>
+<%= form_with url: new_booking_path, method: :get do |f| %>
   <div id="flight_radio_list">
     <%= render @flights %>
   </div>
-  <%= f.hidden_field :passenger_count, value: params[:passenger_count] %>
+  <%= f.hidden_field "booking[passenger_count]", value: params[:passenger_count] %>
   <%= f.submit "Book Flight" unless @flights.empty? %>
 <% end %>

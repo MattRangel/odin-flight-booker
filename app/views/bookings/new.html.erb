@@ -1,0 +1,15 @@
+<h1>Booking for flight #<%= @flight.id %></h1>
+<h3><i><%= @flight.departing_airport.text_code %></i> to <i><%= @flight.arriving_airport.text_code %></i> @ <i><%= @flight.takeoff.to_fs(:long) %></i></h3>
+<%= form_with model: @booking, url: bookings_path do |f| %>
+  <% @booking.passengers.each do |passenger| %>
+    <%= f.fields_for :passengers,  passenger do |passenger_form| %>
+        <%= passenger_form.label :name, "Passenger Name: " %>
+        <%= passenger_form.text_field :name %>
+        <%= passenger_form.label :email, "Passenger Email: " %>
+        <%= passenger_form.text_field :email %>
+        <br>
+    <% end %>
+  <%= f.hidden_field "flight_id", value: params[:booking][:flight_id] %>
+  <% end %>
+  <%= f.submit "Submit Flight Booking" %>
+<% end %>
