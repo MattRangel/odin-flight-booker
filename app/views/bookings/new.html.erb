@@ -1,5 +1,5 @@
 <h1>Booking for flight #<%= @flight.id %></h1>
-<h3><i><%= @flight.departing_airport.text_code %></i> to <i><%= @flight.arriving_airport.text_code %></i> @ <i><%= @flight.takeoff.to_fs(:long) %></i></h3>
+<%= render "flights/info", flight: @flight %>
 <%= form_with model: @booking, url: bookings_path do |f| %>
   <% @booking.passengers.each do |passenger| %>
     <%= f.fields_for :passengers,  passenger do |passenger_form| %>
