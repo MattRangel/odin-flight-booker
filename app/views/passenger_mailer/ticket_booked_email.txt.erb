@@ -1,0 +1,12 @@
+Booking #<%= @booking.id %> has been created!
+==========================================
+
+You have sucessfully booked your flight, see full details below.
+
+
+Name: <%= @passenger.name %>
+Flight Number: <%= @flight.id %>
+Departure Time: <%= @flight.takeoff.to_fs(:long_ordinal) %>
+Departure Airport: <%= @flight.departing_airport.text_code %>
+Arrival Airport: <%= @flight.arriving_airport.text_code %>
+Duration: <%= @flight.duration_minutes %> min
