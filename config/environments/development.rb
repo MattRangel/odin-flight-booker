@@ -43,6 +43,10 @@ Rails.application.configure do
 
   # send mail to letter_opener
   config.action_mailer.delivery_method = :letter_opener
+
+  # send mail to postmark
+  #config.action_mailer.delivery_method = :postmark
+
   config.action_mailer.perform_deliveries = true
 
   # Print deprecation notices to the Rails logger.
