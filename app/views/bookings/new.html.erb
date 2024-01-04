@@ -1,15 +1,22 @@
 <h1>Booking for flight #<%= @flight.id %></h1>
 <%= render "flights/info", flight: @flight %>
 <%= form_with model: @booking, url: bookings_path do |f| %>
-  <% @booking.passengers.each do |passenger| %>
-    <%= f.fields_for :passengers,  passenger do |passenger_form| %>
-        <%= passenger_form.label :name, "Passenger Name: " %>
-        <%= passenger_form.text_field :name %>
-        <%= passenger_form.label :email, "Passenger Email: " %>
-        <%= passenger_form.text_field :email %>
-        <br>
+  <div data-controller="list" data-list-item-count-value="-1">
+    <button data-action="list#addItem">&nbsp;&nbsp;<b>+</b> Add Passenger&nbsp;&nbsp;</button><br>
+    <template data-list-target="itemTemplate">
+      <button data-list-target="removeBtn" data-action="list#remove">&nbsp;&nbsp;<b>-</b>&nbsp;&nbsp;</button>
+      <%= f.fields_for "passengers_attributes", index: "INDEXNUM" do |passenger_form| %>
+          <%= passenger_form.label :name, "Passenger Name: " %>
+          <%= passenger_form.text_field :name %>
+          <%= passenger_form.label :email, "Passenger Email: " %>
+          <%= passenger_form.text_field :email %>
+      <% end %>
+      <br>
+    </template>
+    <% @booking.passengers.length.times do %>
+      <div data-list-target="listItem"></div>
     <% end %>
+  </div>
   <%= f.hidden_field "flight_id", value: params[:booking][:flight_id] %>
-  <% end %>
   <%= f.submit "Submit Flight Booking" %>
 <% end %>
